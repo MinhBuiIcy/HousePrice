@@ -104,6 +104,12 @@ export interface PredictionResult {
     id: number;
     price: number;
     area: number;
+    rooms?: number;
+    toilets?: number;
+    floors?: number;
+    district: string;
+    ward: string;
+    title: string;
     distance_km: number;
   }>;
   price_per_m2: number;

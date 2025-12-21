@@ -1,0 +1,19 @@
+[
+  "area",
+  "price",
+  "rooms",
+  "toilets",
+  "floors",
+  "lat",
+  "lng",
+  "width",
+  "length",
+  "price_per_sqm",
+  "total_rooms",
+  "area_per_floor",
+  "distance_from_center",
+  "district_encoded",
+  "ward_encoded",
+  "legal_encoded",
+  "seller_type_encoded"
+]

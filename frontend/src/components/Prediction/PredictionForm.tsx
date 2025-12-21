@@ -88,15 +88,15 @@ export const PredictionForm = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={6}>
           <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
+            <CardContent sx={{ p: 3 }}>
+              <Typography variant="h5" gutterBottom fontWeight={600}>
                 Thông tin căn nhà
               </Typography>
 
               <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
+                <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <TextField
                       fullWidth
@@ -106,6 +106,7 @@ export const PredictionForm = () => {
                       value={formData.area}
                       onChange={(e) => handleChange('area', parseFloat(e.target.value))}
                       inputProps={{ min: 10, max: 1000, step: 0.1 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -119,6 +120,7 @@ export const PredictionForm = () => {
                         handleChange('rooms', e.target.value ? parseInt(e.target.value) : undefined)
                       }
                       inputProps={{ min: 0, max: 20 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -132,6 +134,7 @@ export const PredictionForm = () => {
                         handleChange('toilets', e.target.value ? parseInt(e.target.value) : undefined)
                       }
                       inputProps={{ min: 0, max: 10 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -145,6 +148,7 @@ export const PredictionForm = () => {
                         handleChange('floors', e.target.value ? parseInt(e.target.value) : undefined)
                       }
                       inputProps={{ min: 1, max: 20 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -155,6 +159,15 @@ export const PredictionForm = () => {
                       label="Quận/Huyện"
                       value={formData.district || ''}
                       onChange={(e) => handleChange('district', e.target.value)}
+                      size="medium"
+                      SelectProps={{
+                        MenuProps: {
+                          PaperProps: {
+                            sx: { maxHeight: 400 }
+                          }
+                        }
+                      }}
+                      sx={{ '& .MuiSelect-select': { py: 1.5 } }}
                     >
                       <MenuItem value="">-- Chọn quận --</MenuItem>
                       {districts.map((district) => (
@@ -173,6 +186,15 @@ export const PredictionForm = () => {
                       value={formData.ward || ''}
                       onChange={(e) => handleChange('ward', e.target.value)}
                       disabled={!formData.district}
+                      size="medium"
+                      SelectProps={{
+                        MenuProps: {
+                          PaperProps: {
+                            sx: { maxHeight: 400 }
+                          }
+                        }
+                      }}
+                      sx={{ '& .MuiSelect-select': { py: 1.5 } }}
                     >
                       <MenuItem value="">-- Chọn phường --</MenuItem>
                       {wards.map((ward) => (
@@ -193,6 +215,7 @@ export const PredictionForm = () => {
                         handleChange('width', e.target.value ? parseFloat(e.target.value) : undefined)
                       }
                       inputProps={{ min: 0, max: 100, step: 0.1 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -206,6 +229,7 @@ export const PredictionForm = () => {
                         handleChange('length', e.target.value ? parseFloat(e.target.value) : undefined)
                       }
                       inputProps={{ min: 0, max: 100, step: 0.1 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -219,6 +243,7 @@ export const PredictionForm = () => {
                         handleChange('lat', e.target.value ? parseFloat(e.target.value) : undefined)
                       }
                       inputProps={{ step: 0.000001 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -232,6 +257,7 @@ export const PredictionForm = () => {
                         handleChange('lng', e.target.value ? parseFloat(e.target.value) : undefined)
                       }
                       inputProps={{ step: 0.000001 }}
+                      size="medium"
                     />
                   </Grid>
 
@@ -253,19 +279,19 @@ export const PredictionForm = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} lg={6}>
           {result ? (
             <Card>
-              <CardContent>
-                <Typography variant="h6" gutterBottom color="primary">
+              <CardContent sx={{ p: 3 }}>
+                <Typography variant="h5" gutterBottom color="primary" fontWeight={600}>
                   Kết quả dự đoán
                 </Typography>
 
                 <Box sx={{ mb: 3 }}>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body1" color="text.secondary" fontWeight={500}>
                     Giá dự đoán
                   </Typography>
-                  <Typography variant="h4" color="primary" gutterBottom>
+                  <Typography variant="h3" color="primary" gutterBottom fontWeight={700}>
                     {formatPrice(result.predicted_price)}
                   </Typography>
                 </Box>
@@ -298,12 +324,15 @@ export const PredictionForm = () => {
                 </Typography>
                 {result.similar_houses.map((house, index) => (
                   <Paper key={index} sx={{ p: 2, mb: 1, bgcolor: 'background.default' }}>
+                    <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
+                      {house.title}
+                    </Typography>
                     <Grid container spacing={1}>
                       <Grid item xs={6}>
                         <Typography variant="body2" color="text.secondary">
                           Giá
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="body1" color="primary" fontWeight={600}>
                           {formatPrice(house.price)}
                         </Typography>
                       </Grid>
@@ -315,9 +344,38 @@ export const PredictionForm = () => {
                           {house.area} m²
                         </Typography>
                       </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="body2" color="text.secondary">
+                          Phòng ngủ
+                        </Typography>
+                        <Typography variant="body1">
+                          {house.rooms || 'N/A'}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="body2" color="text.secondary">
+                          Toilet
+                        </Typography>
+                        <Typography variant="body1">
+                          {house.toilets || 'N/A'}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Typography variant="body2" color="text.secondary">
+                          Số tầng
+                        </Typography>
+                        <Typography variant="body1">
+                          {house.floors || 'N/A'}
+                        </Typography>
+                      </Grid>
                       <Grid item xs={12}>
                         <Typography variant="body2" color="text.secondary">
-                          Khoảng cách: ~{house.distance_km.toFixed(2)} km
+                          Vị trí: {house.district} - {house.ward}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography variant="body2" color="primary">
+                          📍 Khoảng cách: ~{house.distance_km.toFixed(2)} km
                         </Typography>
                       </Grid>
                     </Grid>

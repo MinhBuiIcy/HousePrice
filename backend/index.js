@@ -46,4 +46,17 @@ app.use(express.json());
 
 app.use("/api-docs", swaggerUIServe, swaggerUISetup);
 
+// Initialize ML models
+const predictor = require("./ml/predictor");
+(async () => {
+  try {
+    console.log('\n🤖 Initializing ML models...');
+    await predictor.loadModels();
+    console.log('✅ ML models loaded successfully!\n');
+  } catch (error) {
+    console.error('❌ Failed to load ML models:', error.message);
+    console.error('ML endpoints will not be available.\n');
+  }
+})();
+
 module.exports = app

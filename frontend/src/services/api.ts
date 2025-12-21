@@ -8,6 +8,11 @@ import {
   PredictionResult,
 } from '../types/house';
 import { mockHouses } from '../data/mockHouses';
+import { realApi } from './realApi';
+
+// Toggle between mock and real API
+// Set to false to use real backend API
+const USE_MOCK_API = false;
 
 // Helper function to categorize price
 const getPriceCategory = (price: number): 'low' | 'medium' | 'high' | 'very_high' => {
@@ -249,4 +254,5 @@ class MockAPIService {
   }
 }
 
-export const api = new MockAPIService();
+// Export the appropriate API based on USE_MOCK_API flag
+export const api = USE_MOCK_API ? new MockAPIService() : realApi;

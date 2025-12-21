@@ -5,6 +5,7 @@ const houseController = require("modules/houses/controllers/houseController");
 const houseMapController = require("modules/houses/controllers/houseMapController");
 const statsController = require("modules/stats/controllers/statsController");
 const filtersController = require("modules/filters/controllers/filtersController");
+const mlController = require("modules/ml/controllers/mlController");
 const router = express.Router({ mergeParams: true });
 
 
@@ -19,6 +20,11 @@ router.group("/api/v1", validate([]), (router) => {
 
   router.get("/filters/districts", filtersController.districts);
   router.get("/filters/wards", filtersController.wards);
+
+  // ML endpoints
+  router.post("/ml/predict", mlController.predict);
+  router.post("/ml/recommend", mlController.recommendByFeatures);
+  router.get("/ml/recommend/:houseId", mlController.recommendById);
 });
 
 module.exports = router;
