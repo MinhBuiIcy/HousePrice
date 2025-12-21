@@ -1,0 +1,28 @@
+{
+  "created_date": "2025-12-21 22:12:28",
+  "n_samples": 14415,
+  "n_features": 17,
+  "knn_n_neighbors": 10,
+  "avg_similarity": 0.9764390573502988,
+  "avg_price_error_pct": 18.90869442502827,
+  "avg_area_error_pct": 14.842858553313127,
+  "features": [
+    "area",
+    "price",
+    "rooms",
+    "toilets",
+    "floors",
+    "lat",
+    "lng",
+    "width",
+    "length",
+    "price_per_sqm",
+    "total_rooms",
+    "area_per_floor",
+    "distance_from_center",
+    "district_encoded",
+    "ward_encoded",
+    "legal_encoded",
+    "seller_type_encoded"
+  ]
+}
