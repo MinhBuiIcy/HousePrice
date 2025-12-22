@@ -309,6 +309,10 @@ async def recommend_by_features(request: RecommendByFeaturesRequest):
             (user_features['lng'] - center_lng)**2
         )
         
+        # Price weighting - duplicate price features for higher priority
+        user_features['price_weighted'] = user_features['price']
+        user_features['price_per_sqm_weighted'] = user_features['price_per_sqm']
+        
         # Encode district
         if request.district and 'district' in recommendation_encoders:
             le = recommendation_encoders['district']
