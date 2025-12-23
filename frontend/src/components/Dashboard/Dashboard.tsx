@@ -53,14 +53,28 @@ export const Dashboard = () => {
     }
   };
 
+  
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 64,
+          left: 240,
+          right: 0,
+          bottom: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          '@media (max-width: 900px)': {
+            left: 0,
+          },
+        }}
+      >
         <CircularProgress />
       </Box>
     );
   }
-
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
