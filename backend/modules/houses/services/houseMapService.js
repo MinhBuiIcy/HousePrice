@@ -48,7 +48,6 @@ module.exports = {
 
     const houses = await db.House.findAll({
       where,
-      attributes: ["id", "lat", "lng", "price", "title", "area", "image_thumb"],
       limit: 5000,
     });
 
@@ -63,6 +62,15 @@ module.exports = {
         area: h.area,
         image_thumb: h.image_thumb,
         price_category: priceCategory(h.price),
+        rooms: h.rooms,
+        toilets: h.toilets,
+        floors: h.floors,
+        length: h.length,
+        width: h.width,
+        legal: h.legal,
+        ward: h.ward,
+        district: h.district,
+        city: h.city
       }));
   },
 };

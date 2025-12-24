@@ -15,5 +15,7 @@
   "district_encoded",
   "ward_encoded",
   "legal_encoded",
-  "seller_type_encoded"
+  "seller_type_encoded",
+  "price_weighted",
+  "price_per_sqm_weighted"
 ]

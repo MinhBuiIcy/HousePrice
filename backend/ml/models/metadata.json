@@ -1,5 +1,5 @@
 {
-  "conversion_date": "2025-12-22T00:13:00.832868",
+  "conversion_date": "2025-12-24T08:18:55.944138",
   "price_prediction": {
     "model_type": "RandomForestRegressor",
     "n_features": 24,
@@ -32,7 +32,7 @@
   },
   "recommendation": {
     "model_type": "NearestNeighbors",
-    "n_features": 17,
+    "n_features": 19,
     "n_houses": 14415,
     "features": [
       "area",
@@ -51,7 +51,9 @@
       "district_encoded",
       "ward_encoded",
       "legal_encoded",
-      "seller_type_encoded"
+      "seller_type_encoded",
+      "price_weighted",
+      "price_per_sqm_weighted"
     ]
   }
 }
